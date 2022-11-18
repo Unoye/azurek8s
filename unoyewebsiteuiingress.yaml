@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: routing-for-unoyewebsiteui
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+
+spec:
+  tls:
+  - hosts:
+    - frontendaz.unoye.com
+  rules:
+  - host: frontendaz.unoye.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: unoyewebsiteui
+            port:
+              number: 80
